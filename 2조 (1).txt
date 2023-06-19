@@ -1,0 +1,84 @@
+문제
+학생 10명의 점수를 입력하고 
+점수대별로 분표를 *로 나타낸다 (히스토그램)
+
+<예시> 
+1번째 학생의 점수를 입력하세요 >> 100
+2번째 학생의 점수를 입력하세요 >> 95
+3번째 학생의 점수를 입력하세요 >> 85
+4번째 학생의 점수를 입력하세요 >> 75
+5번째 학생의 점수를 입력하세요 >> 65
+6번째 학생의 점수를 입력하세요 >> 99
+7번째 학생의 점수를 입력하세요 >> 88
+8번째 학생의 점수를 입력하세요 >> 78
+9번째 학생의 점수를 입력하세요 >> 78
+10번째 학생의 점수를 입력하세요 >> 32
+
+1~10   
+11~20   
+21~30   
+31~40   *
+41~50   
+51~60   
+61~70   *
+71~80   ***
+81~90   **
+91~100   ***
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+1번째 학생의 점수를 입력하세요 >> 101
+잘못입력하셨습니다.
+점수는 0~100점 사이로 입력해주세요.
+
+1번째 학생의 점수를 입력하세요 >> 
+
+
+<풀이>
+
+public class Quiz01 {
+   
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      int[]score=new int[10];
+      int[]star=new int[10];
+      int stdScore=0;
+      int range=1;
+      
+      while(score[score.length-1]==0) {
+         for (int i=0;i<score.length;i++) {
+            if(score[i]==0) {
+               System.out.print((i+1)+"번째 학생의 점수를 입력하세요 >> ");
+               stdScore = sc.nextInt();
+               
+               if(stdScore>0 && stdScore <=100) {
+                  score[i]=stdScore;
+                  star[(stdScore-1)/10]++;
+               }else {
+                  System.out.println("잘못입력하셨습니다.");
+                  System.out.println("점수는 0~100점 사이로 입력해주세요.\n");
+                  break;
+               }
+            }
+         }
+      }
+      System.out.println();
+      for(int i=0;i<score.length;i++) {
+         System.out.print(range+"~"+(range+9)+"\t");
+         for(int j=0;j<star[i];j++) {
+            System.out.print("*");
+         }
+         System.out.println();
+         range=range+10;
+         
+      }
+   }
+
+}
